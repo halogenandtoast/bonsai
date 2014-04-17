@@ -1,0 +1,43 @@
+# comments!
+class Greeter
+  def init(name, @greeting = "Hello")
+    @name = name.capitalize()
+
+  def greet()
+    "{@greeting} {@name}".puts()
+
+greeter = Greeter("Josh", "Hola")
+greeter.greet()
+
+if condition
+  do_something
+else
+  do_something_else
+
+
+class Guest
+  def persisted?
+    false
+
+5
+3.4
+"string"
+true
+false
+[1, "something else"]
+{ object: "hello", "something else": "cool" }
+
+
+def some_method(arg, function_arg)
+  function_arg()
+
+
+class Integer
+  def times(proc)
+    if proc
+      i = 0
+      while i < self
+        proc.call()
+        i +=
+
+      self
