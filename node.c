@@ -12,23 +12,12 @@ struct Node *run_node(struct Node *node) {
   switch(node->type) {
     case FUNCTION_CALL_NODE:
       left = run_node(node->u2.n);
-      return_value = new_node(LITERAL_NODE, 1, bonsai_func_call(node->u1.s, left->u1.v));
+      return_value = new_node(LITERAL_NODE, 1, bonsai_func_call(node->u1.s, 1, left->u1.v));
       break;
     case BINARY_NODE:
       left = run_node(node->u2.n);
       right = run_node(node->u3.n);
-
-      if (strcmp("+", node->u1.s) == 0) {
-        value = left->u1.i + right->u1.i;
-        printf("%d\n", value);
-        return_value = new_node(LITERAL_NODE, 1, value);
-      } else if (strcmp("-", node->u1.s) == 0) {
-        value = left->u1.i - right->u1.i;
-        printf("%d\n", value);
-        return_value = new_node(LITERAL_NODE, 1, value);
-      } else {
-        printf("Failed with %s", node->u1.s);
-      }
+      return_value = new_node(LITERAL_NODE, 1, bonsai_func_call(node->u1.s, 2, left->u1.v, right->u1.v));
       break;
     case EXPRESSION_NODE:
       return_value = run_node(node->u1.n);
