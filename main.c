@@ -7,6 +7,7 @@ extern FILE *yyin;
 int yyparse();
 
 int main(int argc, char *argv[]) {
+  vm_init();
   if(argc > 1) {
     yyin = fopen(argv[1], "r");
   }

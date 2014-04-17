@@ -6,6 +6,7 @@
 
 typedef unsigned long VALUE;
 
+void vm_init();
 VALUE bonsai_func_call(const char *, VALUE);
 
 #endif
