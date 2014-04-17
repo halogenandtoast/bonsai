@@ -4,8 +4,6 @@
 #define _NODE_H_
 
 enum node_type {
-  PROGRAM_NODE,
-#define PROGRAM_NODE PROGRAM_NODE
   EXPRESSION_NODE,
 #define EXPRESSION_NODE EXPRESSION_NODE
   BINARY_NODE,
@@ -35,5 +33,6 @@ struct Node {
 
 struct Node *new_node(enum node_type type, size_t size, ...);
 struct Node *append_node(struct Node *parent, struct Node *child);
+struct Node *run_node(struct Node *node);
 
 #endif

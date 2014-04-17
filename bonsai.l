@@ -11,4 +11,4 @@
 "+" { return PLUS; }
 "-" { return MINUS; }
 [ \t\n] {}
-. { fprintf(stderr, "Invalid token %s", yytext); }
+. { fprintf(stderr, "Invalid token %s\n", yytext); }

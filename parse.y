@@ -21,10 +21,10 @@
 
 %%
 
-program: expressions { $$ = new_node(PROGRAM_NODE, 1, $1); }
+program: expressions { $$ = run_node($1); }
 
 expressions: expressions expression { $$ = append_node($1, $2); }
-           | expression { $$ = new_node(EXPRESSION_NODE, 1, $1); }
+           | expression { $$ = new_node(EXPRESSION_NODE, 1, $1, NULL); }
 
 expression: expression PLUS expression { $$ = new_node(BINARY_NODE, 3, "+", $1, $3); }
           | expression MINUS expression { $$ = new_node(BINARY_NODE, 3, "-", $1, $3); }

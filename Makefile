@@ -2,7 +2,7 @@ SRC = main.c lex.yy.c y.tab.c node.c
 all: bonsai
 
 bonsai: ${SRC}
-	cc -o bonsai ${SRC}
+	cc -ggdb -o bonsai ${SRC}
 
 lex.yy.c: bonsai.l
 	flex bonsai.l
