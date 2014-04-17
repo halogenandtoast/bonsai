@@ -10,4 +10,4 @@ y.tab.c: parse.y
 	bison -d -b y parse.y
 
 clean:
-	rm bonsai
+	rm bonsai y.tab.h y.tab.c lex.yy.c
