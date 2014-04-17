@@ -11,6 +11,7 @@
 %token PLUS MINUS DOT LPAREN RPAREN
 
 %left PLUS MINUS
+%left DOT
 
 %union {
   struct Node *node;
