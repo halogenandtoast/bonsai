@@ -1,4 +1,4 @@
-SRC = main.c lex.yy.c y.tab.c node.c
+SRC = main.c lex.yy.c y.tab.c node.c vm.c
 all: bonsai
 
 bonsai: ${SRC}

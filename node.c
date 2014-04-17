@@ -10,6 +10,10 @@ struct Node *run_node(struct Node *node) {
   int value;
 
   switch(node->type) {
+    case FUNCTION_CALL_NODE:
+      left = run_node(node->u2.n);
+      return_value = new_node(LITERAL_NODE, 1, bonsai_func_call(node->u1.s, left->u1.v));
+      break;
     case BINARY_NODE:
       left = run_node(node->u2.n);
       right = run_node(node->u3.n);
@@ -65,7 +69,11 @@ struct Node *new_node(enum node_type type, size_t size, ...) {
       node->u3.n = va_arg(arguments, struct Node *);
       break;
     case LITERAL_NODE:
-      node->u1.i = va_arg(arguments, int);
+      node->u1.v = va_arg(arguments, int);
+      break;
+    case FUNCTION_CALL_NODE:
+      node->u1.s = va_arg(arguments, const char *);
+      node->u2.n = va_arg(arguments, struct Node *);
       break;
   }
 
