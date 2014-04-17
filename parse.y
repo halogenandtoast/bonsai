@@ -6,9 +6,17 @@
 
 %token NUMBER PLUS MINUS
 
+%left PLUS MINUS
+
 %start program
 
 %%
 
-program: NUMBER PLUS NUMBER { printf("%d\n", $1 + $3) }
-       | NUMBER MINUS NUMBER { printf("%d\n", $1 - $3) }
+program: expressions
+
+expressions: expressions expression
+           | expression { printf("%d\n", $1); }
+
+expression: expression PLUS expression { $$ = $1 + $3; }
+          | expression MINUS expression { $$ = $1 - $3; }
+          | NUMBER { $$ = $1; }
