@@ -7,7 +7,7 @@
 
 %%
 
-[0-9]+ { yylval = atoi(yytext); return NUMBER; }
+[0-9]+ { yylval.ival = atoi(yytext); return NUMBER; }
 "+" { return PLUS; }
 "-" { return MINUS; }
 [ \t\n] {}
