@@ -20,19 +20,19 @@ struct Node {
   union {
     struct Node *n;
     int i;
-    const char *s;
+    char *s;
     VALUE v;
   } u1;
   union {
     struct Node *n;
     int i;
-    const char *s;
+    char *s;
     VALUE v;
   } u2;
   union {
     struct Node *n;
     int i;
-    const char *s;
+    char *s;
     VALUE v;
   } u3;
 };
@@ -40,5 +40,7 @@ struct Node {
 struct Node *new_node(enum node_type type, size_t size, ...);
 struct Node *append_node(struct Node *parent, struct Node *child);
 struct Node *run_node(struct Node *node);
+void free_node(struct Node *node);
+int bonsai_run(struct Node *node);
 
 #endif

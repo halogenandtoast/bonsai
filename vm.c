@@ -25,6 +25,10 @@ void vm_init() {
   bs_add_method(cInteger, "+", bs_integer_plus);
 }
 
+void vm_destroy() {
+  bs_class_free(cInteger);
+}
+
 VALUE bonsai_func_call(const char *method, size_t size, ...) {
   struct Method *current_method = ((struct Class *)cInteger)->method;
   va_list args;

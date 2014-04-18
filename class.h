@@ -15,6 +15,7 @@ struct Class {
 };
 
 VALUE bs_class_create(const char *name);
+void bs_class_free(VALUE klass);
 void bs_add_method(VALUE klass, const char *name, VALUE (*c_method)());
 
 #endif
