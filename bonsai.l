@@ -8,12 +8,12 @@
 
 %%
 
-[0-9]+ { yylval.ival = atoi(yytext); return NUMBER; }
-"+" { return PLUS; }
-"-" { return MINUS; }
-"." { return DOT; }
-[a-z_]+ { yylval.sval = strdup(yytext); return ID; }
-"(" { return LPAREN; }
-")" { return RPAREN; }
+[0-9]+ { yylval.ival = atoi(yytext); return TNUMBER; }
+"+" { return TPLUS; }
+"-" { return TMINUS; }
+"." { return TDOT; }
+[a-z_]+ { yylval.sval = strdup(yytext); return TID; }
+"(" { return TLPAREN; }
+")" { return TRPAREN; }
 [ \t\n] {}
 . { fprintf(stderr, "Invalid token: %s\n", yytext); }

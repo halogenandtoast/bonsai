@@ -6,12 +6,12 @@
   void yyerror(const char *error_message) { fprintf(stderr, "%s\n", error_message); }
 %}
 
-%token <ival> NUMBER
-%token <sval> ID
-%token PLUS MINUS DOT LPAREN RPAREN
+%token <ival> TNUMBER
+%token <sval> TID
+%token TPLUS TMINUS TDOT TLPAREN TRPAREN
 
-%left PLUS MINUS
-%left DOT
+%left TPLUS TMINUS
+%left TDOT
 
 %union {
   struct Node *node;
@@ -27,13 +27,13 @@
 
 %%
 
-program: expressions { $$ = bonsai_run($1); }
+program: expressions { $$ = bonsai_run(append_node($1, new_node(DONE_NODE, 0))); }
 
 expressions: expressions expression { $$ = append_node($1, new_node(EXPRESSION_NODE, 1, $2, NULL)); }
            | expression { $$ = new_node(EXPRESSION_NODE, 1, $1, NULL); }
 
-expression: expression PLUS expression { $$ = new_node(BINARY_NODE, 3, "+", $1, $3); }
-          | expression MINUS expression { $$ = new_node(BINARY_NODE, 3, "-", $1, $3); }
-          | expression DOT ID LPAREN RPAREN { $$ = new_node(FUNCTION_CALL_NODE, 2, $3, $1); free($3); }
-          | LPAREN expression RPAREN { $$ = $2; }
-          | NUMBER { $$ = new_node(LITERAL_NODE, 1, INT2FIX($1)); }
+expression: expression TPLUS expression { $$ = new_node(BINARY_NODE, 3, "+", $1, $3); }
+          | expression TMINUS expression { $$ = new_node(BINARY_NODE, 3, "-", $1, $3); }
+          | expression TDOT TID TLPAREN TRPAREN { $$ = new_node(FUNCTION_CALL_NODE, 2, $3, $1); free($3); }
+          | TLPAREN expression TRPAREN { $$ = $2; }
+          | TNUMBER { $$ = new_node(LITERAL_NODE, 1, INT2FIX($1)); }

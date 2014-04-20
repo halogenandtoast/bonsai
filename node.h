@@ -11,8 +11,10 @@ enum node_type {
 #define BINARY_NODE BINARY_NODE
   LITERAL_NODE,
 #define LITERAL_NODE LITERAL_NODE
-  FUNCTION_CALL_NODE
+  FUNCTION_CALL_NODE,
 #define FUNCTION_CALL_NODE FUNCTION_CALL_NODE
+  DONE_NODE,
+#define DONE_NODE DONE_NODE
 };
 
 struct Node {
@@ -39,7 +41,7 @@ struct Node {
 
 struct Node *new_node(enum node_type type, size_t size, ...);
 struct Node *append_node(struct Node *parent, struct Node *child);
-struct Node *run_node(struct Node *node);
+void run_node(Instruction **instructions, struct Node *node);
 void free_node(struct Node *node);
 int bonsai_run(struct Node *node);
 
